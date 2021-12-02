@@ -1,4 +1,4 @@
-# Project Proposal for "Design and Fabrication of an Internet of Things Level-4 Autonomous Smart Fan"
+# Project Proposal for Design and Fabrication of an Internet of Things Level-4 Autonomous Smart Fan
 
 ## Abstract
 
