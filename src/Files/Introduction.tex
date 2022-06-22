@@ -1,35 +1,57 @@
 \section{Introduction}
 \label{sec:introduction}
+
 \subsection{Background}
 
-The concept of a smart home is being adopted across the world. Smart homes involve introducing smartness into human dwellings to increase comfort and ease of living \cite{lashkari_energy_2019}. Another benefit is energy conservation, which is exemplified by incorporating a smart fan. Fans are used to lower temperatures in hot environments, but most often these fans have to be manually operated. This research project will provide a guide to developing an IoT level 4 autonomous smart fan that would fit nicely into a smart home \cite{rana_connected_2021}.
+Mobile robots are continuously increasing in non-industrial applications such as military, disaster management, and home applications.
+Mobile robots can be classified according to the type of motion. The type of motion can be as holonomic or non-holonomic.
+The holonomic mobile vehicles have the advantage that they have a controllable degrees of freedom equal to the total degrees of freedom of the mobile robot.
+Omnidirectional on the other hand is that a robot can change the direction of motion without having to perform intermediate rotation steps and they are able to move in all directions from a given starting point while simultaneously rotating \cite{javier_moreno_design_2016}.
+Current mobile vehicles obtain mobility using wheels.
+This project proposal will seek to apply the concept of omnidirectional and holonomic motion to a set of wheels to develop a mobile platform that can have applications in industrial settings.
+The wheels in consideration are castor wheels applied in the home, industrial plants, warehouses, and other huge objects that require mobility.
 
 \subsection{Problem statement}
 
-The world is facing an unprecedented rise in temperatures in recent years due to the depletion of the ozone layer by greenhouse gases \cite{noauthor_new_nodate}. The United Nations has listed Climate action as one of its Sustainable Development Goals in an effort to combat this situation \cite{noauthor_goal_nodate}. The high temperatures have necessitated communities to adopt climate control systems, which come down to air conditioners and fans. With the advent of smart devices and smart homes, the idea of smart air conditioners and smart fans that turn themselves on and off, and adjust their speed of rotation depending on temperature would be a welcome sight.
+Mobile robots and platforms have found general applications in homes and other non-industrial applications.
+These vehicles are largely unmanned and operated remotely.
+This technology can be adopted for industrial use in the application of casters.
+Casters are used to move heavy and large objects on the warehouse or factory floor.
+This process is manual and the operator has to push around the caster physically.
+The next step involves removing manual control and controlling the caster wheels. 
 \par
-However, most of the technological advancements have been made on air conditioners but they are very expensive to run because they use up a lot of energy. The alternative, fans, remain mostly of manual control and those that have tried to bridge the gap are semi-autonomous. The problem with these kinds of fans is that people forget to turn them off which leads to a lot of energy wastage.
+Despite this being the obvious next step, caster wheels in the industry currently require manual control.
+Casters require an initial push force to begin rolling.
+Other applications of caster wheels such as shopping trolleys and hospital beds also require manual control. 
 \par
-This, therefore, calls for the need to develop autonomous fan systems that bridges this gap. A need therefore arises to control the fan based on the temperature, position and number of occupants in a room.
+The current implementation of caster wheels defies the trends in technological innovation being observed in the world.
+Maintaining manual control on casters is less efficient compared to an automated version.
+Furthermore, laborers get tired easily when pushing the heavy casters around especially due to difficulty in maintaining the correct swiveling.
+The need, therefore, arises to develop a controllable version of castor wheels so that the process can be automated.
 
 
 \subsection{Objectives}
+
 \subsubsection{Main objective}
 
-To design and fabricate an \ac{IoT} Level-4 Autonomous Smart Fan.
+To design and fabricate a prototype mobile platform capable of omnidirectional and holonomic motion
 
 \subsubsection{Specific objectives}
 
 \begin{enumerate}
-	\item To design and fabricate the fan blades, fan case, motor mount and stand of the smart fan. \vspace*{.2cm}
-	\item To integrate a stepper motor and a brushless dc motor to the motor mount and fan blades.\vspace*{.2cm}
-	\item To develop an algorithm to control the rotation of the fan blades based on the temperature, position and number of people in a room.\vspace*{.2cm}
-	\item To submit a certification application at \ac{KEBS} for our product.\vspace*{.2cm}
+	\item To design and build a mechanical chassis and a platform that can hold all the electrical components and have an application fitted onto it. \vspace*{.2cm}
 	
-
+	\item To design and construct a power transmission unit\vspace*{.2cm}
+	
+	\item To design a \ac{DC} motor control circuit for individual caster wheels\vspace*{.2cm}
+	
+	\item To develop  algorithms to control the motors and achieve simultaneous holonomic motion from the caster wheels and remotely control the mobile platform\vspace*{.2cm}
+	
 \end{enumerate}
-
 
 \subsection{Justification of the study}
 
-The apparent availability of cheap and accessible technologies that are bridging the gap between manual and level-4 autonomous control lead us to conduct this study. Autonomous control is very efficient, with the optimization of energy usage contributing to the reduction in burning fossil fuels around the world. Furthermore, developing a cheap user-friendly level-4 autonomous smart fan will help grow the field of \ac{IoT}, especially in Sub Saharan Africa. This is where the world is headed, and it is only appropriate for us to try and head in the same direction. 
+The apparent availability of cheap and accessible technologies that are bridging the gap between nonholonomic and holonomic motion control leads us to conduct this study.
+Holonomic motion is very efficient, with navigation to and from tight spaces being a reality.
+Furthermore, developing a cheap holonomic mobile platform in the field of mobile robots, especially in Sub-Saharan Africa aligns with one of the \ac{UN} \ac{SDG} goals, building infrastructure, promoting inclusive and sustainable industrialization, and fostering innovation \cite{noauthor_goal_nodate}.
+This is where the world is headed, and it is only appropriate for us to try and head in the same direction. 

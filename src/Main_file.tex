@@ -2,6 +2,7 @@
 \usepackage{a4}
 \usepackage{graphicx}
 \graphicspath{ {./Figures/} }
+\usepackage{graphicx}
 \usepackage{psfrag}
 \usepackage{amsmath}                     % \boldsymbol{#1}
 \usepackage{amssymb}
@@ -15,8 +16,10 @@
 \usepackage[printonlyused]{acronym}
 \usepackage{epstopdf}
 \usepackage{advdate}
+\usepackage[table, dvipsnames]{xcolor}
+\usepackage{subfig}
 \hypersetup{
-    colorlinks=false,
+    colorlinks=true,
     linkcolor=black,
     filecolor=black,      
     urlcolor=black,
@@ -100,75 +103,91 @@
    \large{Department of Mechatronic Engineering}\\
 
     ------------------------------------------------------------------------------------------------\\[1.0cm]
-    \LARGE{\textbf{Design and Fabrication of an Internet of Things Level-4 Autonomous Smart Fan}}\\[0.6cm]
-    
-    \LARGE{\textbf{Final year project proposal
-            }}\\[1.5cm]
-    %\large{by}\\[0.6cm
+    \LARGE{\textbf{Design and Fabrication of a Prototype Mobile Platform with Holonomic and OmniDirectional Motion}}\\[0.6cm]
+    \LARGE{\textbf{Final year project (FYP 18-7)
+            }}\\[0.4cm]
+    \vspace{0.3cm}
+    \large{by}\\[0.3cm]
 
-    \vspace{0.5cm}
+    \vspace{0.3cm}
     \large{\textbf{Gitu Kelvin Karimi (ENM221-0058/2017)
             }}\\
      \large{\textbf{Osodo Rodney David (ENM221-0091/2017)
-            }}\\[1.0cm]
-
-    % \large{\small{\today}}\\
+            }}\\[0.4cm]
+    \large{\textbf{Supervisor}}\\
+    \large{Eng. Macben M. Mackenzi}\\[0.2cm]
+    \vfill
     \large{\small{\yesthreeday}}\\
     ------------------------------------------------------------------------------------------------\\[1.5cm]
   \end{center}
 \end{titlepage}
 %
 %\pagenumbering{gobble}% Remove page numbers (and reset to 1)
-
+\lhead{Declaration}
 \input{Files/Declaration}
 \clearpage
+\lhead{Contents}
 \tableofcontents
 \clearpage
-% \addcontentsline{toc}{section}{Table of Contents}
+\addcontentsline{toc}{section}{Table of Contents}
 \addcontentsline{toc}{section}{List of Figures}
-%{%
+\lhead{List of Figures}
+
 \let\oldnumberline\numberline%
 \renewcommand{\numberline}{\figurename~\oldnumberline}%
 \listoffigures
 \clearpage
 \addcontentsline{toc}{section}{List of Tables}
+\lhead{List of Tables}
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
 \listoftables
 \newpage
 \clearpage
 \addcontentsline{toc}{section}{List of Abbreviations}
+\lhead{List of Abbreviations}
 \input{Files/ListofAbbreviations.tex}
 \clearpage
 \newpage
 
-\addcontentsline{toc}{section}{Abstract}
+\newpage
+\lhead{Abstract}
 \input{Files/Abstract}
 \clearpage
 \pagenumbering{arabic}
-  \input{Files/Chapter1}
+  \lhead{Chapter 1. Introduction}
+  \input{Files/Introduction}
   \clearpage
+  \lhead{Chapter 2. Literature Review}
   \input{Files/Chapter2}
   \clearpage
+  \lhead{Chapter 3. Methodology}
     \input{Files/Chapter3}
   \clearpage
+  \lhead{Chapter 4. Expected Outcomes}
     \input{Files/Chapter4}
-%  \clearpage
+  \clearpage
+  \lhead{Chapter 5. Budget}
+    \input{Files/Chapter5}
+ \clearpage
+ \lhead{Chapter 6. Time Plan}
+    \input{Files/Chapter6}
+ \clearpage
 %  \input{Files/Summary}
   \clearpage
 %----  Bibliography  ----------------------------------------
+\lhead{REFERENCES}
 \markright{References}                               % Erzeugt Kopfzeile
-\addcontentsline{toc}{section}{References}            % L                     % BIBTeX
+\addcontentsline{toc}{section}{References}            % Literaturverzeichnis ins Inhaltsverzeichnis
 \bibliographystyle{Bib/IEEEtran}
-\bibliography{Bib/References.bib}
-
-\nocite{Lun02}
-                                     % Falls etwas in die Literaturliste soll, was nicht Referenziert wird
-                                     
+\bibliography{Bib/References}                         % BIBTeX
+\nocite{Lun02} 
 \clearpage
 \pagestyle{myheadings}
 
-\markright{APPENDICES}                               % Erzeugt 
-\addcontentsline{toc}{section}{Appendices}            % L           
-\input{Files/Appendices}
+% \markright{APPENDICES}                               % Erzeugt 
+% \addcontentsline{toc}{section}{Appendices}            % L           
+% \lhead{APPENDICES}
+% \input{Files/Appendices}
 % \appendix
 % \chapter{Appendix}
 % \input{Files/Appendices}

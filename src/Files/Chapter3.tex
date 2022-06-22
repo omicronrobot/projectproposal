@@ -1,182 +1,167 @@
 \section{Methodology}
-The design considerations will be explored in this section. There will also be a full description of how the smart fan system will be implemented. Figure \ref{fig:architecture} shows the basic architecture of the system. Because it is part of a larger modular system, its integration should be seamless. There are basically two modules:
+\label{sec:methodology}
+
+To achieve the specific objectives, three modules: mechanical, electrical, and control will have to be developed in a synergistic manner. 
+
+\subsection{Mechanical Module}
+
+\subsubsection{Castor Wheels}
+
+Several considerations need to be taken into account when selecting the type of castors to use, the most important being the load capacity of the wheel.
+This will be determined by the diameter of the wheel.
+The castor should also be easy to modify to achieve motion from a motor.
+
+\subsubsection{Mechanical chassis and platform}
+
+The chassis will form the underside of the mobile platform and will be used to attach the caster wheels and their drive systems.
+It will also hold platform onto which the electrical and electronic components, including the motors and control unit will be supported.
+The platform will cover up the electronics and allow for an application to be added to the system.
+The two modules will be made from the same material, preferably metal. 
+Some of the design considerations for this material are:
 
 \begin{itemize}
-\item The smart fan
-\item The sensor node
+
+    \item It should be lightweight and able to handle heavy loads, i.e., it should have excellent tensile strength.
+    
+    \item It should have high machinability which would make fabrication easy.
+    
+    \item It should have corrosion resistance.
+    
+    \item It should be readily available.
+    
 \end{itemize}
 
-\begin{figure}[h]
-\includegraphics[scale=0.15]{architecture}
+These design considerations narrow down the list of appropriate materials to aluminium, steel, and stainless steel.
+The metal that satisfies these considerations will be selected for the design work.
+
+\subsubsection{Power Transmission Unit}
+
+To transmit power from the motor to the wheels, a power transmission unit will be required.
+The mechanical power transmission elements under consideration are shafts and couplings, gears and gear trains, brakes and clutches, and chains.
+Some of the things to consider when assembling a power transmission unit are:
+
+\begin{itemize}
+    
+    \item Torque transmitted
+    
+    \item Parallel or non-parallel shafts
+    
+    \item Shaft size
+    
+    \item Speed of rotation
+    
+\end{itemize}
+
+The mechanical shaft is the most important part of the power transmission unit.
+Sub-components such as couplings, gears, and chains are mounted onto a shaft to transmit power or rotation from a motor.
+The connection should ensure the connection transmits the load, power and rotation without slipping and within the accuracy requirement of the design.
+Load, power, and rotation speeds will be determined from the motor characteristics.
+
+\subsection{Electrical and Electronics Module}
+
+\subsubsection{Motors}
+The motor is the main actuation unit in the system.
+Each wheel will have its own independent actuation unit made up of motors and power transmission components.
+In particular, \ac{DC} motors will be used, and several parameters of the motor will be considered before settling on a final design.
+Some of these parameters are horsepower, rotation speed, and maximum torque.
+These characteristics will depend on the mechanical structure of the mobile platform.
+The size, weight, and maximum load characteristics will ultimately determine the motor speed, torque, and power requirements. 
+The choice of motor will also depend on : 
+
+\begin{itemize}
+
+    \item Maximal speed.
+    The duration of how long it takes to have the sustained maximum speed needs to be calculated.
+    If we are using a gearbox, the available gear ratios will help us calculate the maximal speed of the motor
+    \item Maximal torque.
+    The maximum torque enables the vehicle to start in a given slope.
+    It is possible to calculate the highest torque required by the electric motor considering the differential and gearbox, if using a gearbox.
+    Maximal weight is also to be taken into consideration.
+        
+    \item Maximal power.
+    The maximum power is found simply at maximum speed, this is the case where the vehicle as a large frontal area or goes at very high speed.
+    This translates to having a motor powerful enough to go through all the different conditions the vehicle can be submitted to.
+    The maximum power enables the vehicle to reach and maintain a constant speed under stringent slope and speed conditions.
+    To calculate the maximum power, you need to have a simulator that takes in account the drag and friction coefficients of the vehicle in addition to the forces needed for the climb.
+    
+    \item Battery Capacity.
+    The battery capacity is typically calculated using a simulator to go through a reference cycle typical of the usage of the vehicle.
+    The simulator can output the consumption of the vehicle in Wh/m.
+    
+    \item Battery Voltage.
+    The battery voltage is dependent on the size of the vehicle.
+    As the battery voltage increases, the current output is lowered.
+    So in the cases where the vehicle continuous power is high like in bigger vehicles, you want to keep the size of the conductors at a manageable level by increasing the battery voltage.
+
+    \item Gearbox or direct-drive.
+    The high torque/low speed of the motor allows it to directly interface with standard axle differentials without the need for an intermediate gearbox.
+    While improving system reliability and reducing overall maintenance costs.
+    
+    \item Cost
+    
+\end{itemize}
+
+\subsection{Control Module}
+
+\subsubsection{Processing Unit}
+
+Responsible for executing the application logic, sending instructions to the motor driver, and reading inputs from the proximity sensors in the system.
+The choice of a micro controller or microprocessor will be determined by the following factors.
+
+\begin{itemize}
+    \item Analog Pins:
+    This is the interface between the motor driver and the control module.
+    The analog pins should be able to send the different modes to the motors attached to the motor driver.
+    The availability of approximately 16 will guide the choice of micro controller needed
+    
+    \item \ac{DAC} Resolution
+    Since we need a fine grain control of speed on the motors we will therefore need a micro controller or microprocessor with a higher \ac{DAC} resolution.
+    
+    \item Wireless capability: 
+    Since we need the mobile platform to be remotely actuated we need a micro controller that can be able to connect to a wireless standard preferably WiFi or Bluetooth low energy.
+    The availability of this two wireless standards will guide the choice of micro controller needed.
+    
+    \item Energy consumption
+    Since we are running on battery power we should be able to use the source of energy wisely.
+    We should be able to choose a micro controller that is not power hungry.
+    The maximum, idle and rated power of the micro controller will guide the choice of micro controller needed.
+    
+\end{itemize}
+
+\subsubsection{Motor Control}
+
+Responsible for executing the application logic, sending instructions to the motors through a motor driver.
+The choice of a motor controller will be determined by the following factors.
+The procedure of how we will be controlling the motor is shown by figure \ref{fig:motorcontrol}. We will get the user input through remote control as shown by figure \ref{fig:remotecontrol}. This will translate it to the specific trajectory the robot will undertake. The trajectory will be passed through a fuzzy logic controller which understands our system. This will output the actuator values. We will cross reference the values with an ideal kinematic model and then actuate the motors. This will happen through a power transmission link. We will continually collect sensor data to check how our system is behaving and try to optimize it.
+
+\begin{itemize}
+
+    \item Voltage rating of the motor driver
+    A motor driver with a voltage of either 9v or 12v is ideal as it is difficult to find battery sources with more than 12V currently
+    
+    \item Type of control
+    We will be controlling the speed and direction of rotation of the \ac{DC} motors. This will guide us in looking of speed controllers for motors
+    
+    \item Type of motor being used
+    
+    \item Continuous current supply by the analog pins
+    
+    \item Control method wither \ac{PWM} or analog voltage
+    
+\end{itemize}
+
+
+\begin{figure}[htbp]
+\includegraphics[scale=0.9]{Figures/controller.jpg}
 \centering
-\caption{Design architecture}
-\label{fig:architecture}
+\caption[Flow chart for Motor Control] {Flow chart for Motor Control}
+\label{fig:motorcontrol}
 \end{figure}
 
-The sensor nodes measure the temperature of the room and send it to the smart fan main controller. The sensor nodes are positioned far from the smart fan but in the same room to measure the temperature endpoint after the air has travelled from the smart fan.
-\par
-The smart fan has the main controller. This controller controls the stepper motor which controls the position of the fan. It also controls the brushless \ac{DC} motor which controls the spinning of the fan. The main controller communicates with sensor nodes via \ac{BLE} then communicates with your device through the \ac{Wi-Fi} router in your home or you can connect to its \ac{Wi-Fi} network.
-\par
-The following modules break down the design problem:
 
-\subsection{Interface module}
-
-The interface module is responsible for the following:
-\begin{itemize}
-\item Human-machine interface.
-\item Manual overriding of settings and configurations.
-\item Creating a visual appeal of the product.
-\end{itemize}
-
-The following considerations were made during the design of the interface of the mechanism:
-\begin{itemize}
-\item Fulfilling the function to control the smart fan remotely.
-\item Unlocking the full functionality of the smart fan
-\item Ease of use of the interface.
-\item Ease of integration with third-party mobile \ac{IoT} applications.
-\item Availability on both Android and Web platforms.
-\end{itemize}
-
-The interface for this design is intended to be a web and android based application to be installed on the device of the home user. In tandem, it will provide a few buttons to start and stop. This will be crucial to our development as we will provide the user with the ultimate user experience for both advanced and novel users.
-The \ac{UX} is a phrase that is strongly related to the \ac{UI}. The distinction between the two is that \ac{UI} is concerned with what a user sees and interacts with, whereas \ac{UX} is concerned with the total experience a user has with a product. It comprises the website, application, hardware packing, and installation, among other things.
-\par
-The user can receive automatic notifications if they have a web or Android application. In \ac{IoT} applications, the most common scenario is that we want to be notified or alerted if something strange occurs. The user will also be able to keep a proactive eye on the data. The user will undoubtedly be able to control the system remotely as a result of this. This might also be done automatically by the application, based on the instructions provided.
-
-\subsection{Communication module}
-
-The communication module is responsible for the following:
-
-\begin{itemize}
-\item Transmitting data from our sensor nodes to the smart fan.
-\item Transmitting data from our smart fan to the mobile phone and vice versa.
-\item Sending analytics data back to our backend server.
-\end{itemize}
-
-The following considerations were made during the design of the interface of the mechanism:
-
-\begin{itemize}
-\item Communication must be done over low energy.
-\item Communication must be secured with encryption.
-\item Communication must be done wirelessly either through \ac{BLE} or \ac{Wi-Fi}.
-\end{itemize}
-
-The four most prevalent wireless technologies, \ac{BLE}, \ac{UWB}, ZigBee, and \ac{Wi-Fi}, will be evaluated quantitatively in terms of transmission time, data coding efficiency, protocol complexity, and power consumption in this paper. Network protocol appropriateness is heavily influenced by practical applications but based on existing data, the best technology to be used will be \ac{BLE} Low Energy based on its low consumption power, availability and low overhead.
-\par
-For communication with the mobile device, \ac{Wi-Fi} will be the appropriate medium. This is based on research that most home users use \ac{Wi-Fi} within their homes and also most of them keep their \ac{Wi-Fi} on connect compared to \ac{BLE} \cite{shimray_use_2019}.
-\par
-\ac{UART} communication will be used for communication with the \ac{BLE} module. A \ac{UART} provides a bi-directional byte stream so that both ends of a connection can transmit and receive bytes with each other \cite{noauthor_uart_2015}.
-
-\subsection{Software and Processors module}
-
-The software and processing module is responsible for the following:
-
-\begin{itemize}
-\item Process information from the interface to actuate it.
-\item Control the smart fan.
-\item Transmit data to the backend server.
-\item Receive data from the sensor nodes.
-\item Be able to utilize deep sleep
-\item Minimum of 1 \ac{PWM} and \ac{UART} communication pins
-\item \ac{Wi-Fi} and \ac{BLE} enabled
-\end{itemize}
-
-The following considerations were made during the design of the software and processing module of the mechanism:
-
-\begin{itemize}
-\item Computationally less intensive method
-\item Secure all communications
-\item Low cost of the processors module with \ac{Wi-Fi} and BLE modules
-\end{itemize}
-
-Figure \ref{fig:softwarelogic} shows the basic software logic of how the smart fan control module will operate.
-
-\begin{figure}[t]
-\includegraphics[scale=0.15]{Figures/logic.png}
+\begin{figure}[htbp]
+\includegraphics[scale=0.8]{Figures/Blank_diagram.png}
 \centering
-\caption{Software Logic}
-\label{fig:softwarelogic}
+\caption[Flow chart for Remote Motor Control] {Flow chart for Remote Motor Control}
+\label{fig:remotecontrol}
 \end{figure}
-
-\subsection{Measurement module}
-
-The interface module is responsible for the following:
-\begin{itemize}
-\item Measure temperature and humidity.
-\item Identify the occupants in the house.
-\end{itemize}
-
-The following considerations were made during the design of the measurement module of the mechanism:
-\begin{itemize}
-\item Fulfilling the function to control the smart fan remotely.
-\item Unlocking the full functionality of the smart fan.
-\item Ease of use of the interface.
-\end{itemize}
-
-\subsection{Actuation module}
-
-The actuation module is responsible for the following:
-
-\begin{itemize}
-\item Rotating the Brushless \ac{DC} motor.
-\item Rotating the Stepper Motor.
-\end{itemize}
-
-
-\subsection{Assembly module}
-
-The assembly module is responsible for the following:
-\begin{itemize}
-\item Synergistic integration of the motor and fan blades.
-\item Full working of the sensor nodes.
-\item Hold the fan up high and maintain its weight.
-\end{itemize}
-
-The following considerations were made during the design of the assembly of the mechanism:
-\begin{itemize}
-\item Use as many modular parts as possible.
-\item Using easily available material from the workshops.
-\item Must hold the frame so as not to fall.
-\end{itemize}
-
-The fan will be assembled by mountain the fan blades on the motor shaft. The fan casing will be added onto the fan blades, while the motor is added into the motor casing. This will be assembled to the stand so as to hold it above. The stand will have an aluminium tube and a base plate to increase stability.
-\par
-The fan blades will be constructed from a \ac{PVC} tube. The tube will be cut and straightened out after which the blades with equal dimensions will be cut out and rolled to have a curvature. This is to reduce the air resistance as the fan is moving. The blades will be attached to the centre case which will be attached to the motor shaft.
-\par
-The fan case will be made from small steel wires welded together. It will be moulded into a punched shape and mounted to the motor mount as the fan will be inside the case.
-\par
-The stand, made from a steel tube, will be joined to the motor mount, hence holding the fan in position. 
-\par
-For the sensor node, the \ac{PCB} circuitry will be assembled inside the sensor box which will be \ac{3D} printed. A battery will be added to provide power to the sensor node. 
-
-\subsection{Environment module}
-
-The environment module is responsible for the following:
-
-\begin{itemize}
-\item Interaction with the environment.
-\item Blow maximum air through the inlet diffuser
-\end{itemize}
-
-The following considerations were made during the design of the environment module of the mechanism:
-\begin{itemize}
-\item To minimise noise produced by the fan as it moves.
-\item Not to interfere with most of the user’s space
-\item Ultimately reduce energy consumption hence helping reduce climate change at large.
-\end{itemize}
-
-For the design, the motor should produce the minimum noise possible while rotating. Its aesthetics will be improved by applying paint which will increase the product appeal to the user.
-The sensor nodes will also interact with the environment, getting temperature readings from it. The sensor node will be as small as possible and not interfere with the aesthetics of the room.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
